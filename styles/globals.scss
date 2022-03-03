@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rubik:wght@400;600;700&display=swap');
+
+body {
+    position: relative;
+    font-family: var(--body-font);
+    background-color: var(--bg-color);
+    margin: 0;
+    color: var(--main-text);
+    font-weight: 400;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #F9F9F9;
+    --white: #ffffff;
+    --main-text: #191919;
+    --gray: #F0F0F0;
+    --orange: #FF7010;
+
+    // fonts
+    --body-font: 'Inter', sans-serif;
+    --second-font: 'Rubik', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Inter', sans-serif;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+input, button, textarea {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button, input[type="submit"] {
+    cursor: pointer;
+    background: none;
+}
+
+input:focus, button:focus {
+    outline: none;
+}
+
+select {
+    border: none;
+}
+
+select:focus {
+    outline: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1290px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+}

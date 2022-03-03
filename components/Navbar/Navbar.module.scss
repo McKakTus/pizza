@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray);
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+    }
+    .items {
+        display: flex;
+        align-items: center;
+    }
+    .item {
+        font-size: 14px;
+        line-height: 18px;
+        color: var(--main-text);
+        font-weight: 400;
+        margin-right: 40px;
+        &:last-child {
+            margin-right: 0;
+        }
+        span {
+            font-weight: 600;
+        }
+    }
+    .location {
+        display: flex;
+        align-items: center;
+        span {
+            display: flex;
+            margin: 0 8px;
+            font-weight: 400;
+        }
+    }
+    .account {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 8px;
+        }
+    }
+}

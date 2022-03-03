@@ -1,8 +1,25 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import Head from 'next/head';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { Navbar } from '../components/Navbar';
+import { Header } from '../components/Header';
+
+import '../styles/globals.scss'
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <title>Куда Пицца</title>
+        <meta name="description" content="Куда Пицца - Лучшая пицца в мире" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+
+      <Navbar />
+      <Header />
+
+      <Component { ... pageProps} />
+    </>
+  );
 }
 
 export default MyApp

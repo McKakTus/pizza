@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray);
+    .content {
+        display: flex;
+        align-items: center;
+        height: 64px;
+    }
+    .logo {
+        display: flex;
+    }
+    .shopping_bag {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        line-height: 22px;
+        color: var(--white);
+        font-weight: 400;
+        background-color: var(--orange);
+        border-radius: 4px;
+        padding: 8px 16px;
+        margin-left: auto;
+        img {
+            margin-right: 8px;
+        }
+    }
+}
