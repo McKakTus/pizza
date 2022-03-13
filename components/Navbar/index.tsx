@@ -1,4 +1,9 @@
+import Image from 'next/image';
 import React from 'react';
+
+import locationIcn from '../../public/icons/ic_location.svg';
+import arrowIcn from '../../public/icons/ic_arrow_bottom.svg';
+import accountIcn from '../../public/icons/ic_account.svg';
 
 import styles from './Navbar.module.scss';
 
@@ -11,9 +16,9 @@ export const Navbar: React.FC = () => {
                         <ul className={styles.items}>
                             <li className={styles.item}>
                                 <button className={styles.location}>
-                                    <img src="/icons/ic_location.svg" alt="" />
+                                    <Image src={locationIcn} alt="" />
                                     <span>Москва</span>
-                                    <img src="/icons/ic_arrow_bottom.svg" alt="" />
+                                    <Image src={arrowIcn} alt="" />
                                 </button>
                             </li>
                             <li className={styles.item}>
@@ -24,7 +29,10 @@ export const Navbar: React.FC = () => {
                         <ul className={styles.items}>
                             <li className={styles.item}>Время работы: с 11:00 до 23:00</li>
                             <li className={styles.item}>
-                                <button className={styles.account}><img src="/icons/ic_account.svg" alt="" />Войти в аккаунт</button>
+                                <button className={styles.account}>
+                                    <Image src={accountIcn} alt="" />
+                                    <div className={styles.signin}>Войти в аккаунт</div>
+                                </button>
                             </li>
                         </ul>
                     </div>
