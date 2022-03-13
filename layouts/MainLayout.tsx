@@ -4,9 +4,11 @@ interface MainLayoutProps {
 
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = () => {
+export const MainLayout: React.FC<MainLayoutProps> = ({children}) => {
     return (
-        <></>
+        <>
+           <div className="wrapper">{children}</div>
+        </>
     );
 }
 
