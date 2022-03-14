@@ -2,7 +2,11 @@ import Link from 'next/link';
 import React from 'react';
 import styles from './Categories.module.scss';
 
-export const Categories: React.FC = () => {
+interface CategoriesProps {
+    
+}
+
+export const Categories: React.FC<CategoriesProps> = () => {
     return (
         <>
             <div className={styles.categories}>
