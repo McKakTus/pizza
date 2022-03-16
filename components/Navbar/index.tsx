@@ -1,13 +1,19 @@
-import Image from 'next/image';
 import React from 'react';
 
-import locationIcn from '../../public/icons/ic_location.svg';
-import arrowIcn from '../../public/icons/ic_arrow_bottom.svg';
-import accountIcn from '../../public/icons/ic_account.svg';
-
 import styles from './Navbar.module.scss';
+import { AuthPopup } from '../AuthPopup';
 
 export const Navbar: React.FC = () => {
+    const [authVisible, setAuthVisible] = React.useState(false);
+
+    const openAuthPopup = () => {
+        setAuthVisible(true);
+    };
+
+    const closeAuthPopup = () => {
+        setAuthVisible(false);
+    };
+    
     return (
         <>
             <nav className={styles.navbar}>
@@ -16,9 +22,9 @@ export const Navbar: React.FC = () => {
                         <ul className={styles.items}>
                             <li className={styles.item}>
                                 <button className={styles.location}>
-                                    <Image src={locationIcn} alt="" />
+                                    <img src="icons/ic_location.svg" alt="" />
                                     <span>Москва</span>
-                                    <Image src={arrowIcn} alt="" />
+                                    <img src="icons/ic_arrow_bottom.svg" alt="" />
                                 </button>
                             </li>
                             <li className={styles.item}>
@@ -29,14 +35,15 @@ export const Navbar: React.FC = () => {
                         <ul className={styles.items}>
                             <li className={styles.item}>Время работы: с 11:00 до 23:00</li>
                             <li className={styles.item}>
-                                <button className={styles.account}>
-                                    <Image src={accountIcn} alt="" />
+                                <button className={styles.account} onClick={openAuthPopup}>
+                                    <img src="icons/ic_account.svg" alt="" />
                                     <div className={styles.signin}>Войти в аккаунт</div>
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <AuthPopup onClose={closeAuthPopup} visible={authVisible} />
             </nav>
         </>
     )
