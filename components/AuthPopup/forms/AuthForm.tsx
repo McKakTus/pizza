@@ -17,6 +17,14 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onOpenConfirm }) => {
   const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
   const nextDisabled = !values.formattedValue || values.formattedValue.includes('_');
 
+  const onSubmit = async () => {
+    try {
+      onOpenConfirm();
+    } catch (error) {
+      console.warn('Ошибка при отправке СМС', error);
+    }
+  };
+
   return (
     <div className={styles.auth}>
       <h2>Вход в аккаунт</h2>
@@ -30,7 +38,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onOpenConfirm }) => {
         value={values.value}
         onValueChange={({ formattedValue, value }) => setValues({ formattedValue, value })}
       />
-      <button className={styles.btnSubmit} disabled={nextDisabled} onClick={onOpenConfirm}>Войти</button>
+      <button className={styles.btnSubmit} disabled={nextDisabled} onClick={onSubmit}>Войти</button>
       <span>Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением</span>
     </div>
   );

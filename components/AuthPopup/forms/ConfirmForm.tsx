@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import styles from '../AuthPopup.module.scss';
 
@@ -7,14 +7,11 @@ interface ConfirmFormProps {
   onOpenConfirm: () => void;
 }
 
-type InputValueState = {
-  formattedValue: string;
-  value: string;
-};
-
 export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
     const [codes, setCodes] = React.useState(['', '', '', '']);
     const nextDisabled = codes.some((v) => !v);
+    const [counter, setCounter] = React.useState(10);
+    const timerRef = useRef<any>();
 
     const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const index = Number(event.target.getAttribute('id'));
@@ -29,7 +26,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
         }
     };
     
-    const onSubmit = async (code: string) => {
+    const onSubmit = async () => {
         try {
             alert('Успешная активация!');
         } catch (error) {
@@ -37,6 +34,20 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
             setCodes(['', '', '', '']);
         }
     };
+
+    useEffect(() => {
+        timerRef.current = setInterval(() => {
+            setCounter((prevTimeLeft) => {
+                if (prevTimeLeft > 0) {
+                    return prevTimeLeft - 1;
+                }
+                return prevTimeLeft;
+            });
+        }, 1000);
+        return () => {
+            clearInterval(timerRef.current);
+        };
+    }, [setCounter]);
 
     return (
         <div className={styles.confirm}>
@@ -56,8 +67,12 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
                     />
                 ))}
             </div>
-            <button className={clsx(styles.btnConfirm, styles.btnSubmit)} disabled={nextDisabled}>Войти</button>
-            <p>Отправить код ещё раз через: <span>59 секунд</span></p>
+            <button className={clsx(styles.btnConfirm, styles.btnSubmit)} disabled={nextDisabled} onSubmit={onSubmit}>Войти</button>
+            {counter ? (
+                <p>Отправить код ещё раз через: <span>{counter} секунд</span></p>
+            ) : (
+                <p>Отправить код ещё раз: <button className={styles.btnAgain}>Отправить</button></p>
+            )}
         </div>
     );
 };

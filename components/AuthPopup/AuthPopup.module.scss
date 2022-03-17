@@ -83,6 +83,13 @@
         .btnConfirm {
             max-width: 240px;
         }
+        .btnAgain {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            font-family: var(--second-font);
+            color: var(--orange);
+        }
     }
     .auth {
         display: flex;

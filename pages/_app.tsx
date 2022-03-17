@@ -1,9 +1,6 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head';
 
-import { Navbar } from '../components/Navbar';
-import { Header } from '../components/Header';
-
 import '../styles/globals.scss'
 
 const App = ({ Component, pageProps }: AppProps) => (
@@ -14,8 +11,6 @@ const App = ({ Component, pageProps }: AppProps) => (
       <link rel="icon" href="/favicon.png" />
     </Head>
 
-    <Navbar />
-    
     <Component {...pageProps} />
   </>
 );
