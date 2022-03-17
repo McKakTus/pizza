@@ -1,0 +1,13 @@
+.banners {
+    margin: 30px 0;
+    .items {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 30px;
+    }
+    .item {
+        a {
+            display: flex;
+        }
+    }
+}

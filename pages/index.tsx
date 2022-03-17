@@ -1,3 +1,5 @@
+import { AddressVerification } from "../components/AddressVerification";
+import { Banners } from "../components/Banners";
 import { Categories } from "../components/Categories";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
@@ -11,6 +13,8 @@ export default function Home() {
 
       <MainLayout>
         <Categories />
+        <Banners />
+        <AddressVerification />
       </MainLayout>
     </>
   );
