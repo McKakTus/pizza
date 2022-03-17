@@ -2,6 +2,7 @@ import React from 'react';
 
 import styles from './Navbar.module.scss';
 import { AuthPopup } from '../AuthPopup';
+import Link from 'next/link';
 
 export const Navbar: React.FC = () => {
     const [authVisible, setAuthVisible] = React.useState(false);
@@ -28,7 +29,9 @@ export const Navbar: React.FC = () => {
                                 </button>
                             </li>
                             <li className={styles.item}>
-                                <a className={styles.link} href="#">Проверить адрес</a>
+                                <Link href="">
+                                    <a className={styles.link}>Проверить адрес</a>
+                                </Link>
                             </li>
                             <li className={styles.item}>Среднее время доставки*: <span>00:24:19</span></li>
                         </ul>

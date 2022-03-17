@@ -7,9 +7,7 @@ interface HeaderProps {
     hideMenu?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-    hideMenu
-}) => {
+export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
     return (
         <>
             <header className={styles.header}>
