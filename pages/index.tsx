@@ -3,6 +3,7 @@ import { Banners } from "../components/Banners";
 import { Categories } from "../components/Categories";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
+import { Products } from "../components/Products";
 import { MainLayout } from "../layouts/MainLayout";
 
 export default function Home() {
@@ -15,6 +16,8 @@ export default function Home() {
         <Categories />
         <Banners />
         <AddressVerification />
+
+        <Products />
       </MainLayout>
     </>
   );

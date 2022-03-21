@@ -1,9 +1,8 @@
-import clsx from 'clsx';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-scroll';
 
 import styles from './Header.module.scss';
-
 interface HeaderProps {
     hideMenu?: boolean;
 }
@@ -36,21 +35,21 @@ export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
         <header className={`${styles.header} ${scroll && 'fixed-top'}`}>
             <div className='container'>
                 <div className={styles.content}>
-                    <Link href="/">
+                    <NextLink href="/">
                         <a className={styles.logo}>
                             <img src="/img/logo.svg" alt="" />
                         </a>
-                    </Link>
+                    </NextLink>
                     {!hideMenu &&
                         <ul className={styles.menu__items} ref={dropdownRef}>
-                            <li className={styles.menu__item}><Link href=""><a>Акции</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#pizza"><a>Пицца</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#sushi"><a>Суши</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#drinks"><a>Напитки</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#snaks"><a>Закуски</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#combo"><a>Комбо</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#desert"><a>Десерты</a></Link></li>
-                            <li className={styles.menu__item}><Link href="#souces"><a>Соусы</a></Link></li>
+                            <li className={styles.menu__item}><NextLink href=""><a>Акции</a></NextLink></li>
+                            <li className={styles.menu__item}><Link to="pizzas" spy={true} smooth={true} duration={500}>Пицца</Link></li>
+                            <li className={styles.menu__item}><Link to="sushi" spy={true} smooth={true} duration={500}>Суши</Link></li>
+                            <li className={styles.menu__item}><Link to="drinks" spy={true} smooth={true} duration={500}>Напитки</Link></li>
+                            <li className={styles.menu__item}><Link to="snaks" spy={true} smooth={true} duration={500}>Закуски</Link></li>
+                            <li className={styles.menu__item}><Link to="combo" spy={true} smooth={true} duration={500}>Комбо</Link></li>
+                            <li className={styles.menu__item}><Link to="desert" spy={true} smooth={true} duration={500}>Десерты</Link></li>
+                            <li className={styles.menu__item}><Link to="souces" spy={true} smooth={true} duration={500}>Соусы</Link></li>
                             <li className={styles.menu__item}>
                                 <button className={styles.other} onClick={handleShowMenu}>
                                     <div className={styles.other_text}>Другое</div> 
@@ -58,21 +57,21 @@ export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
                                 </button>
                                 {showMenu && (
                                     <ul className={`${styles.dropdown__items} ${showMenu && 'dropdown--active'}`}>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Акции</a></Link></li>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Пользовательское соглашение</a></Link></li>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Условия гарантии</a></Link></li>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Ресторан</a></Link></li>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Контакты</a></Link></li>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Поддержка</a></Link></li>
-                                        <li className={styles.dropdown__item}><Link href=""><a>Отследить заказ</a></Link></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Акции</a></NextLink></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Пользовательское соглашение</a></NextLink></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Условия гарантии</a></NextLink></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Ресторан</a></NextLink></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Контакты</a></NextLink></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Поддержка</a></NextLink></li>
+                                        <li className={styles.dropdown__item}><NextLink href="/"><a>Отследить заказ</a></NextLink></li>
                                     </ul>
                                 )}
                             </li>
                         </ul>
                     }
-                    <button className={styles.shopping_bag}>
-                        <img src="/icons/ic_shopping_bag.svg" alt="" />
-                        <div className={styles.price}>0 ₽</div>
+                    <button className={styles.shopping_bag}>Корзина
+                        <div className={styles.line}></div>
+                        <div className='count'>0</div>
                     </button>
                 </div>
             </div>
