@@ -99,3 +99,33 @@ ul, li {
         font-family: var(--second-font);
     }
 }
+
+.fixed-top {
+    border-bottom: 0 !important;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        box-shadow: rgba(6, 5, 50, 0.1) 0px 4px 20px
+    }
+}
+
+.dropdown--active {
+    pointer-events: all;
+    -webkit-animation: 0.5s ease-in-out show-menu;
+    animation: 0.5s ease-in-out show-menu;
+}
+
+@keyframes show-menu {
+    0% {
+        -webkit-transform: translateY(15px) translateX(-50%);
+        transform: translateY(15px) translateX(-50%);
+    }
+    100% {
+        -webkit-transform: translateY(0) translateX(-50%);
+        transform: translateY(0) translateX(-50%);
+    }
+}
