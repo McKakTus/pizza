@@ -84,14 +84,14 @@ export const Categories: React.FC<CategoriesProps> = () => {
                         </Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to="dessert" spy={true} smooth={true} duration={500}>
+                        <Link to="desert" spy={true} smooth={true} duration={500}>
                             <a><img src="/img/categories/ic_dessert.svg" alt="" />Десерты</a>
                         </Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to="sauce" spy={true} smooth={true} duration={500}>
-                            <a><img src="/img/categories/ic_sauce.svg" alt="" />Соусы</a>
-                        </Link>
+                        <NextLink href="/">
+                            <a><img src="/img/categories/ic_sauce.svg" alt="" />Другие</a>
+                        </NextLink>
                     </li>
                     {/* {categories.map((obj) => ( */}
                         {/* <Category key={obj.id} {...obj} /> */}

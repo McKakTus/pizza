@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
                             <li className={styles.menu__item}><Link to="snaks" spy={true} smooth={true} duration={500}>Закуски</Link></li>
                             <li className={styles.menu__item}><Link to="combo" spy={true} smooth={true} duration={500}>Комбо</Link></li>
                             <li className={styles.menu__item}><Link to="desert" spy={true} smooth={true} duration={500}>Десерты</Link></li>
-                            <li className={styles.menu__item}><Link to="souces" spy={true} smooth={true} duration={500}>Соусы</Link></li>
+                            <li className={styles.menu__item}><NextLink href="/">Другие товары</NextLink></li>
                             <li className={styles.menu__item}>
                                 <button className={styles.other} onClick={handleShowMenu}>
                                     <div className={styles.other_text}>Другое</div> 
