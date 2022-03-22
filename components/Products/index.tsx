@@ -8,7 +8,13 @@ export const Products: React.FC = () => {
         <div className={styles.section__products}>
             <div className="container">
 
-                <h2 className={styles.title}>Пицца</h2>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Пицца</h2>
+                    <button className={styles.btn__filter}>
+                        <img src="/icons/ic_filter.svg" alt="" />
+                        Фильтры
+                    </button>
+                </div>
                 <section id='pizzas' className={styles.products}>
                     <div className={styles.product}>
                         <main>
@@ -132,7 +138,9 @@ export const Products: React.FC = () => {
                     </div>
                 </section>
 
-                <h2 className={styles.title}>Суши</h2>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Суши</h2>
+                </div>
                 <section id='sushi' className={clsx(styles.products, styles.products__sushi)}>
                     <div className={styles.product}>
                         <main>
@@ -256,7 +264,9 @@ export const Products: React.FC = () => {
                     </div>
                 </section>
 
-                <h2 className={styles.title}>Комбо</h2>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Комбо</h2>
+                </div>
                 <section id='combo' className={styles.products}>
                     <div className={styles.product}>
                         <main>
@@ -380,7 +390,9 @@ export const Products: React.FC = () => {
                     </div>
                 </section>
 
-                <h2 className={styles.title}>Закуски</h2>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Закуски</h2>
+                </div>
                 <section id='snaks' className={styles.products}>
                     <div className={styles.product}>
                         <main>
@@ -504,7 +516,9 @@ export const Products: React.FC = () => {
                     </div>
                 </section>
 
-                <h2 className={styles.title}>Десерты</h2>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Десерты</h2>
+                </div>
                 <section id='desert' className={styles.products}>
                     <div className={styles.product}>
                         <main>
@@ -627,8 +641,10 @@ export const Products: React.FC = () => {
                         </footer>
                     </div>
                 </section>
-
-                <h2 className={styles.title}>Напитки</h2>
+                
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Напитки</h2>
+                </div>
                 <section id='drinks' className={styles.products}>
                     <div className={styles.product}>
                         <main>

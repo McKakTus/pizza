@@ -45,7 +45,9 @@ export const Navbar: React.FC = () => {
                     </ul>
                 </div>
             </div>
-            <AuthPopup onClose={closeAuthPopup} visible={authVisible} />
+            {authVisible && (
+                <AuthPopup onClose={closeAuthPopup} visible={authVisible} />
+            )}
         </nav>
     )
 }

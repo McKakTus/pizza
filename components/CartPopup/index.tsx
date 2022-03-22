@@ -2,15 +2,19 @@ import React from 'react';
 
 import styles from './CartPopup.module.scss';
 
-export const CartPopup: React.FC = () => {
-    
+interface CartPopupProps {
+    onClose: () => void;
+    visible: boolean;
+}
+
+export const CartPopup: React.FC<CartPopupProps> = ({ onClose, visible }) => {
     return (
-        <div className={styles.popup}>
+        <div className={`${styles.popup} ${visible ? styles.popupVisible : ''}`}>
             <div className={styles.content}>
                 <main className={styles.popup__main}>
                     <div className={styles.main__header}>
                         <h2>Ваш заказ</h2>
-                        <button className={styles.close}><img src="/icons/ic_close_pop.svg" alt="" /></button>
+                        <button className={styles.close} onClick={onClose}><img src="/icons/ic_close_pop.svg" alt="" /></button>
                     </div>
                     <div className={styles.cart}>
                         <div className={styles.cart__product}>

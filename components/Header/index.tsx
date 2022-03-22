@@ -1,38 +1,57 @@
 import NextLink from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
+import { CartPopup } from '../CartPopup';
 
 import styles from './Header.module.scss';
-interface HeaderProps {
-    hideMenu?: boolean;
-}
 
-export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
-    const [scroll, setScroll] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
+export const Header: React.FC = () => {
+    // show dropdown
+    const [showDropdownMenu, setShowDropdownMenu] = useState(false);
     const dropdownRef = useRef<any>(null);
+    // show cart popup
+    const [cartVisible, setCartVisible] = useState(false);
+    //show menu
+    const [showMenu, setShowMenu] = useState(false);
 
-    const handleShowMenu = () => {
-        setShowMenu(!showMenu);
+    const openCartPopup = () => {
+        setCartVisible(true);
+    };
+
+    const closeCartPopup = () => {
+        setCartVisible(false);
+    };
+
+    const handleShowDropdownMenu = () => {
+        setShowDropdownMenu(!showDropdownMenu);
     };
 
     const handleHideMenu = (event: any) => {
         const path = event.path || (event.composedPath && event.composedPath());
         if (!path.includes(dropdownRef.current)) {
-            setShowMenu(false);
+            setShowDropdownMenu(false);
         }
     };
 
+    const listenToScroll = () => {
+        if (window.scrollY > 41) {
+            setShowMenu(true);
+        } else {
+            setShowMenu(false);
+        }
+    }
+
     useEffect(() => {
         document.body.addEventListener('click', handleHideMenu);
+    }, [handleHideMenu]);
 
-        window.addEventListener("scroll", () => {
-            setScroll(window.scrollY > 41);
-        });
-    }, []);
+    useEffect(() => {
+        window.addEventListener("scroll", listenToScroll);
+        return () => window.removeEventListener("scroll", listenToScroll); 
+    }, [listenToScroll]);
 
     return (
-        <header className={`${styles.header} ${scroll && 'fixed-top'}`}>
+        <header className={`${styles.header} ${showMenu && 'fixed-top'}`}>
             <div className='container'>
                 <div className={styles.content}>
                     <NextLink href="/">
@@ -40,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
                             <img src="/img/logo.svg" alt="" />
                         </a>
                     </NextLink>
-                    {!hideMenu &&
+                    {showMenu &&
                         <ul className={styles.menu__items} ref={dropdownRef}>
                             <li className={styles.menu__item}><NextLink href=""><a>Акции</a></NextLink></li>
                             <li className={styles.menu__item}><Link to="pizzas" spy={true} smooth={true} duration={500}>Пицца</Link></li>
@@ -49,14 +68,12 @@ export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
                             <li className={styles.menu__item}><Link to="snaks" spy={true} smooth={true} duration={500}>Закуски</Link></li>
                             <li className={styles.menu__item}><Link to="combo" spy={true} smooth={true} duration={500}>Комбо</Link></li>
                             <li className={styles.menu__item}><Link to="desert" spy={true} smooth={true} duration={500}>Десерты</Link></li>
-                            <li className={styles.menu__item}><NextLink href="/">Другие товары</NextLink></li>
                             <li className={styles.menu__item}>
-                                <button className={styles.other} onClick={handleShowMenu}>
-                                    <div className={styles.other_text}>Другое</div> 
-                                    <img src="/icons/ic_shopping_bag.svg" alt="" />
+                                <button className={styles.other} onClick={handleShowDropdownMenu}>
+                                    <div className={styles.other_text}>Другое <img src="icons/ic_arrow_bottom.svg" alt="" /></div> 
                                 </button>
-                                {showMenu && (
-                                    <ul className={`${styles.dropdown__items} ${showMenu && 'dropdown--active'}`}>
+                                {showDropdownMenu && (
+                                    <ul className={`${styles.dropdown__items} ${showDropdownMenu && 'dropdown--active'}`}>
                                         <li className={styles.dropdown__item}><NextLink href="/"><a>Акции</a></NextLink></li>
                                         <li className={styles.dropdown__item}><NextLink href="/"><a>Пользовательское соглашение</a></NextLink></li>
                                         <li className={styles.dropdown__item}><NextLink href="/"><a>Условия гарантии</a></NextLink></li>
@@ -69,12 +86,15 @@ export const Header: React.FC<HeaderProps> = ({ hideMenu }) => {
                             </li>
                         </ul>
                     }
-                    <button className={styles.shopping_bag}>Корзина
+                    <button className={styles.shopping_bag} onClick={openCartPopup}>Корзина
                         <div className={styles.line}></div>
-                        <div className='count'>0</div>
+                        <span>0</span>
                     </button>
                 </div>
             </div>
+            {cartVisible && (
+                <CartPopup onClose={closeCartPopup} visible={cartVisible} />
+            )}
         </header>
     )
 }

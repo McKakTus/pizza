@@ -65,27 +65,32 @@ export const Categories: React.FC<CategoriesProps> = () => {
                     </li>
                     <li className={styles.item}>
                         <Link to="sushi" spy={true} smooth={true} duration={500}>
-                            <a><img src="/img/categories/ic_sushi.svg" alt="" />Суши</a>
+                            <img src="/img/categories/ic_sushi.svg" alt="" />
+                            Суши
                         </Link>
                     </li>
                     <li className={styles.item}>
                         <Link to="drinks" spy={true} smooth={true} duration={500}>
-                            <a><img src="/img/categories/ic_drink.svg" alt="" />Напитки</a>
+                            <img src="/img/categories/ic_drink.svg" alt="" />
+                            Напитки
                         </Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to="snacks" spy={true} smooth={true} duration={500}>
-                            <a><img src="/img/categories/ic_snacks.svg" alt="" />Закуски</a>
+                        <Link to="snaks" spy={true} smooth={true} duration={500}>
+                            <img src="/img/categories/ic_snacks.svg" alt="" />
+                            Закуски
                         </Link>
                     </li>
                     <li className={styles.item}>
                         <Link to="combo" spy={true} smooth={true} duration={500}>
-                            <a><img src="/img/categories/ic_combo.svg" alt="" />Комбо</a>
+                            <img src="/img/categories/ic_combo.svg" alt="" />
+                            Комбо
                         </Link>
                     </li>
                     <li className={styles.item}>
                         <Link to="desert" spy={true} smooth={true} duration={500}>
-                            <a><img src="/img/categories/ic_dessert.svg" alt="" />Десерты</a>
+                            <img src="/img/categories/ic_dessert.svg" alt="" />
+                            Десерты
                         </Link>
                     </li>
                     <li className={styles.item}>
