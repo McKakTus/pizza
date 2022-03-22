@@ -1,7 +1,7 @@
 import React from 'react';
+import clsx from 'clsx';
 
 import styles from './Products.module.scss';
-import clsx from 'clsx';
 
 export const Products: React.FC = () => {
     return (
