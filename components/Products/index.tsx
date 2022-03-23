@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
+import { FilterPopup } from '../FilterPopup';
 
 import styles from './Products.module.scss';
 
 export const Products: React.FC = () => {
+    const [filterVisible, setFilterVisible] = useState(false);
+    
+    const openFilterPopup = () => {
+        setFilterVisible(true);
+    };
+
+    const closeFilterPopup = () => {
+        setFilterVisible(false);
+    };
+
     return (
         <div className={styles.section__products}>
             <div className="container">
 
                 <div className={styles.header}>
                     <h2 className={styles.title}>Пицца</h2>
-                    <button className={styles.btn__filter}>
+                    <button className={styles.btn__filter} onClick={openFilterPopup}>
                         <img src="/icons/ic_filter.svg" alt="" />
                         Фильтры
                     </button>
@@ -762,6 +773,10 @@ export const Products: React.FC = () => {
                     </div>
                 </section>
             </div>
+
+            {filterVisible && (
+                <FilterPopup onClose={closeFilterPopup} visible={filterVisible} />
+            )}
         </div>
     );
 };

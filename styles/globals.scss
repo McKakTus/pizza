@@ -95,6 +95,17 @@ button[data-type="secondary"] {
     }
 }
 
+button[data-type="primary"] {
+    border: 1px solid var(--orange);
+    background-color: var(--white);
+    color: var(--orange-text);
+}
+
+button[data-type="orange"] {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
 .wrapper {
     position: relative;
 }
