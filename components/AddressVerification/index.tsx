@@ -13,7 +13,7 @@ export const AddressVerification: React.FC = () => {
                             <input type="text" placeholder="Адрес" />
                             <img src="/icons/ic_location.svg" alt="" />
                         </div>
-                        <button className={styles.button}>Проверить</button>
+                        <button className={styles.button} data-type="orange">Проверить</button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Rubik:wght@400;600;700&display=swap');
 
+@import 'animations.scss';
+
 body {
     position: relative;
     font-family: var(--body-font);
@@ -27,7 +29,8 @@ body {
     --orange: #FF7010;
     --orange-white: #fff0e6;
     --orange-text: #d15700;
-    --orange-bg-hover: #ffd2b3;
+    --orange-bg-hover: #e86100;
+    --orange-white-bg-hover: #ffd2b3;
     --red: #E23535;
 
     // fonts
@@ -38,6 +41,7 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+    transition: all .15s ease-in-out;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -87,11 +91,15 @@ ul, li {
     text-align: center;
 }
 
+button {
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
 button[data-type="secondary"] {
     background-color: var(--orange-white);
     color: var(--orange-text);
     &:hover {
-        background-color: var(--orange-bg-hover)
+        background-color: var(--orange-white-bg-hover)
     }
 }
 
@@ -99,11 +107,18 @@ button[data-type="primary"] {
     border: 1px solid var(--orange);
     background-color: var(--white);
     color: var(--orange-text);
+    &:hover {
+        background-color: var(--orange-white);
+        border: 1px solid var(--orange-white);
+    }
 }
 
 button[data-type="orange"] {
     background-color: var(--orange);
     color: var(--white);
+    &:hover {
+        background-color: var(--orange-bg-hover)
+    }
 }
 
 .wrapper {
@@ -148,13 +163,10 @@ button[data-type="orange"] {
     animation: 0.5s ease-in-out show-menu;
 }
 
-@keyframes show-menu {
-    0% {
-        -webkit-transform: translateY(15px) translateX(-50%);
-        transform: translateY(15px) translateX(-50%);
-    }
-    100% {
-        -webkit-transform: translateY(0) translateX(-50%);
-        transform: translateY(0) translateX(-50%);
+header {
+    .item {
+        .active {
+            color: var(--orange);
+        }
     }
 }

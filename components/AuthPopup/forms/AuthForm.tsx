@@ -38,7 +38,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onOpenConfirm }) => {
         value={values.value}
         onValueChange={({ formattedValue, value }) => setValues({ formattedValue, value })}
       />
-      <button className={styles.btnSubmit} disabled={nextDisabled} onClick={onSubmit}>Войти</button>
+      <button className={styles.btnSubmit} disabled={nextDisabled} onClick={onSubmit} data-type="orange">Войти</button>
       <span>Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением</span>
     </div>
   );

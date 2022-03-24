@@ -1,5 +1,7 @@
-import NextLink from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
+
+import clsx from 'clsx';
+import NextLink from 'next/link';
 import { Link } from 'react-scroll';
 import { CartPopup } from '../CartPopup';
 
@@ -62,13 +64,13 @@ export const Header: React.FC = () => {
                     {showMenu &&
                         <ul className={styles.menu__items} ref={dropdownRef}>
                             <li className={styles.menu__item}><NextLink href=""><a>Акции</a></NextLink></li>
-                            <li className={styles.menu__item}><Link to="pizzas" spy={true} smooth={true} duration={500}>Пицца</Link></li>
-                            <li className={styles.menu__item}><Link to="sushi" spy={true} smooth={true} duration={500}>Суши</Link></li>
-                            <li className={styles.menu__item}><Link to="drinks" spy={true} smooth={true} duration={500}>Напитки</Link></li>
-                            <li className={styles.menu__item}><Link to="snaks" spy={true} smooth={true} duration={500}>Закуски</Link></li>
-                            <li className={styles.menu__item}><Link to="combo" spy={true} smooth={true} duration={500}>Комбо</Link></li>
-                            <li className={styles.menu__item}><Link to="desert" spy={true} smooth={true} duration={500}>Десерты</Link></li>
-                            <li className={styles.menu__item}>
+                            <li className={clsx(styles.menu__item, 'item')}><Link to="pizzas" spy={true} smooth={true} duration={500}>Пицца</Link></li>
+                            <li className={clsx(styles.menu__item, 'item')}><Link to="sushi" spy={true} smooth={true} duration={500}>Суши</Link></li>
+                            <li className={clsx(styles.menu__item, 'item')}><Link to="drinks" spy={true} smooth={true} duration={500}>Напитки</Link></li>
+                            <li className={clsx(styles.menu__item, 'item')}><Link to="snaks" spy={true} smooth={true} duration={500}>Закуски</Link></li>
+                            <li className={clsx(styles.menu__item, 'item')}><Link to="combo" spy={true} smooth={true} duration={500}>Комбо</Link></li>
+                            <li className={clsx(styles.menu__item, 'item')}><Link to="desert" spy={true} smooth={true} duration={500}>Десерты</Link></li>
+                            <li className={clsx(styles.menu__item, 'item')}>
                                 <button className={styles.other} onClick={handleShowDropdownMenu}>
                                     <div className={styles.other_text}>Другое <img src="icons/ic_arrow_bottom.svg" alt="" /></div> 
                                 </button>
@@ -86,7 +88,7 @@ export const Header: React.FC = () => {
                             </li>
                         </ul>
                     }
-                    <button className={styles.shopping_bag} onClick={openCartPopup}>Корзина
+                    <button className={styles.shopping_bag} onClick={openCartPopup} data-type="orange">Корзина
                         <div className={styles.line}></div>
                         <span>0</span>
                     </button>

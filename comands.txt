@@ -1,0 +1,9 @@
+npx sequelize-cli db:migrate
+
+https://www.youtube.com/watch?v=RdPYA-wDhTA&t=308s&ab_channel=DatabaseStar
+https://www.youtube.com/watch?v=aHbE3pTyG-Q&ab_channel=Amigoscode
+
+npm run dev
+npm run server
+
+install & settings docker + dbeaver

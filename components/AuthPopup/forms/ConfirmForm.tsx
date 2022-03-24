@@ -67,7 +67,7 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
                     />
                 ))}
             </div>
-            <button className={clsx(styles.btnConfirm, styles.btnSubmit)} disabled={nextDisabled} onSubmit={onSubmit}>Войти</button>
+            <button className={clsx(styles.btnConfirm, styles.btnSubmit)} disabled={nextDisabled} onSubmit={onSubmit} data-type="orange">Войти</button>
             {counter ? (
                 <p>Отправить код ещё раз через: <span>{counter} секунд</span></p>
             ) : (
