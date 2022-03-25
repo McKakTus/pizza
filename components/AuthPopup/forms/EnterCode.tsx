@@ -1,13 +1,19 @@
-import clsx from 'clsx';
 import React, { useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
+import { Axios } from '../../../core/axios';
+import { MainContext } from '../../../pages';
+
+import clsx from 'clsx';
 
 import styles from '../AuthPopup.module.scss';
 
-interface ConfirmFormProps {
-  onOpenConfirm: () => void;
+interface EnterCodeProps {
+    onOpenCode: () => void;
 }
 
-export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
+export const EnterCode: React.FC<EnterCodeProps> = () => {
+    const router = useRouter();
+    const { userData } = React.useContext(MainContext);
     const [codes, setCodes] = React.useState(['', '', '', '']);
     const nextDisabled = codes.some((v) => !v);
     const [counter, setCounter] = React.useState(10);
@@ -26,9 +32,13 @@ export const ConfirmForm: React.FC<ConfirmFormProps> = () => {
         }
     };
     
-    const onSubmit = async () => {
+    const onSubmit = async (code: any) => {
         try {
-            alert('Успешная активация!');
+            await Axios.post(`/auth/sms/activate`, {
+                code,
+                user: userData,
+            });
+            router.push('/');
         } catch (error) {
             alert('Ошибка при активации!');
             setCodes(['', '', '', '']);

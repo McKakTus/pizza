@@ -1,11 +1,13 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
+import { MainContext } from '../../../pages';
+import { Axios } from '../../../core/axios';
 
 import styles from '../AuthPopup.module.scss';
 
-interface AuthFormProps {
-  onOpenLogin: () => void;
-  onOpenConfirm: () => void;
+interface EnterPhoneProps {
+  onOpenPhone: () => void;
+  onOpenCode: () => void;
 }
 
 type InputValueState = {
@@ -13,13 +15,16 @@ type InputValueState = {
   value: string;
 };
 
-export const AuthForm: React.FC<AuthFormProps> = ({ onOpenConfirm }) => {
+export const EnterPhone: React.FC<EnterPhoneProps> = ({ onOpenCode }) => {
+  const { setFieldValue } = React.useContext(MainContext);
   const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
   const nextDisabled = !values.formattedValue || values.formattedValue.includes('_');
 
   const onSubmit = async () => {
     try {
-      onOpenConfirm();
+      await Axios.get(`/auth/sms?phone=${values.value}`);
+      setFieldValue('phone', values.value);
+      onOpenCode();
     } catch (error) {
       console.warn('Ошибка при отправке СМС', error);
     }
