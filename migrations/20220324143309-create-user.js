@@ -17,6 +17,12 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      password: {
+        type: Sequelize.STRING,
+      },
+      googleId: {
+        type: Sequelize.STRING,
+      },
       isActive: {
         type: Sequelize.INTEGER
       },

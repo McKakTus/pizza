@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import { MainContext, UserData } from '../../../pages';
 
 import styles from '../AuthPopup.module.scss';
@@ -9,7 +9,7 @@ interface GoogleAuthProps {
     onOpenPhone: () => void;
 }
 
-export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenGoogleAuth, onOpenPhone }) => {
+export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenPhone }) => {
     const { setUserData } = React.useContext(MainContext);
 
     const onClickAuth = () => {
@@ -23,12 +23,12 @@ export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenGoogleAuth, onOpen
     useEffect(() => {
         window.addEventListener('message', ({ data, origin }) => {
             const user: string = data;
-            if (typeof user === 'string' && user.includes('avatarUrl')) {
-                // Cookies.remove('token');
+            if (typeof user === 'string') {
+                Cookies.remove('token');
                 const json: UserData = JSON.parse(user);
                 setUserData(json);
                 onOpenPhone();
-                // Cookies.set('token', json.token);
+                Cookies.set('token', json.token);
             }
         });
     }, []);

@@ -1,5 +1,9 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head';
+
+import Cookies from 'nookies';
+import { Axios } from '../core/axios';
+
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Navbar } from '../components/Navbar';
@@ -23,5 +27,13 @@ const App = ({ Component, pageProps }: AppProps) => (
 
   </>
 );
+
+export const getServerSideProps = (ctx) => {
+  const cookies = Cookies.get(ctx);
+  if (cookies.token) {
+    Axios.defaults.headers.Authorization = `Bearer ${cookies.token}`;
+  }
+};
+
 
 export default App;

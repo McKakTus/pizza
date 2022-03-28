@@ -1,9 +1,10 @@
 import passport from 'passport';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
-import User from '../../models';
+import { User } from '../../models';
 import { UserData } from '../../pages';
 import { createJwtToken } from '../../utils/createJwtToken';
+
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -31,6 +32,8 @@ passport.use(
   
             const obj: Omit<UserData, 'id'> = {
                 email: profile.email,
+                password: profile.password,
+                googleId: profile.id,
                 isActive: 0,
                 username: profile.username,
                 phone: '',
@@ -38,7 +41,7 @@ passport.use(
   
             const findUser = await User.findOne({
                 where: {
-                    username: obj.email,
+                    googleId: obj.googleId,
                 },
             });
     

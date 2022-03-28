@@ -6,8 +6,12 @@ import { passport } from './core/passport';
 import AuthController from './controllers/AuthController';
 
 dotenv.config({
-    path: 'server/.env',
+  path: 'server/.env',
 });
+
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
 
 import './core/db';
 
@@ -17,7 +21,10 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
+app.get('/user/:id', passport.authenticate('jwt', { session: false }), AuthController.getUserInfo);
+app.get('/auth/me', passport.authenticate('jwt', { session: false }, AuthController.getMe));
 app.get('/auth/sms', passport.authenticate('jwt', { session: false }), AuthController.sendSMS);
+app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile']}));
 
 app.post(
   '/auth/sms/activate',
@@ -25,6 +32,16 @@ app.post(
   AuthController.activate,
 );
 
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { successRedirect: '/protected', failureRedirect: '/login' }),
+  AuthController.authCallback,
+);
+
+app.get('/logout', isLoggedIn, (req, res) => {
+  req.logout();
+}); 
+
 app.listen(3001, () => {
-    console.log('Server Runned');
+  console.log('Server Runned');
 });
