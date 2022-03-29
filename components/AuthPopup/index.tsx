@@ -12,7 +12,7 @@ interface AuthPopupProps {
 
 export const AuthPopup: React.FC<AuthPopupProps> = ({ onClose, visible }) => {
     const [formType, setFormType] = React.useState<'main' | 'gmail' | 'phone' | 'code'>('main');
-    
+
     return(
         <div className={`${styles.popup} ${visible ? styles.popupVisible : ''} ${formType === 'phone' ? styles.popupPhone : ''}`}>
             <div className={styles.content}>

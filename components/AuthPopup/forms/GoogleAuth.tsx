@@ -21,9 +21,9 @@ export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenPhone }) => {
     };
 
     useEffect(() => {
-        window.addEventListener('message', ({ data, origin }) => {
+        window.addEventListener('message', ({ data }) => {
             const user: string = data;
-            if (typeof user === 'string') {
+            if (typeof user === 'string' && user.includes('googleId')) {
                 Cookies.remove('token');
                 const json: UserData = JSON.parse(user);
                 setUserData(json);

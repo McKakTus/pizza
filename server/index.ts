@@ -9,17 +9,15 @@ dotenv.config({
   path: 'server/.env',
 });
 
-function isLoggedIn(req, res, next) {
-  req.user ? next() : res.sendStatus(401);
-}
-
-import './core/db';
-
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
+
+const isLoggedIn = (req, res, next) => {
+  req.user ? next() : res.sendStatus(401);
+}
 
 app.get('/user/:id', passport.authenticate('jwt', { session: false }), AuthController.getUserInfo);
 app.get('/auth/me', passport.authenticate('jwt', { session: false }, AuthController.getMe));
@@ -34,12 +32,13 @@ app.post(
 
 app.get(
   '/auth/google/callback',
-  passport.authenticate('google', { successRedirect: '/protected', failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/login' }),
   AuthController.authCallback,
 );
 
 app.get('/logout', isLoggedIn, (req, res) => {
   req.logout();
+  res.redirect('/');
 }); 
 
 app.listen(3001, () => {
