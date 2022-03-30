@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './AuthPopup.module.scss';
 import { EnterPhone } from './forms/EnterPhone';
 import { EnterCode } from './forms/EnterCode';
 import { GoogleAuth } from './forms/GoogleAuth';
+import { MainContext, UserData } from '../../pages';
 
 interface AuthPopupProps {
     onClose: () => void;
@@ -11,7 +12,30 @@ interface AuthPopupProps {
 }
 
 export const AuthPopup: React.FC<AuthPopupProps> = ({ onClose, visible }) => {
-    const [formType, setFormType] = React.useState<'main' | 'gmail' | 'phone' | 'code'>('main');
+    const [formType, setFormType] = useState<'main' | 'gmail' | 'phone' | 'code'>('main');
+    const { setUserData } = React.useContext(MainContext);
+
+    const getUserData = (): UserData | null => {
+        try {
+            return JSON.parse(window.localStorage.getItem('userData'));
+        } catch (error) {
+            return null;
+        }
+    };    
+
+    const onFormType = () => {
+        setFormType('phone');
+    }
+
+    React.useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const json = getUserData();
+            if (json) {
+                setUserData(json);
+                onFormType();
+            }
+        }
+    }, []);
 
     return(
         <div className={`${styles.popup} ${visible ? styles.popupVisible : ''} ${formType === 'phone' ? styles.popupPhone : ''}`}>

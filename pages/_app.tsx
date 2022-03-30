@@ -1,39 +1,35 @@
-import { AppProps } from 'next/app'
-import Head from 'next/head';
-
-import Cookies from 'nookies';
-import { Axios } from '../core/axios';
-
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { Navbar } from '../components/Navbar';
+import React from 'react';
+import App, { AppContext } from 'next/app';
+import { wrapper } from '../redux/store';
 
 import '../styles/globals.scss'
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <>
-    <Head>
-      <title>Куда Пицца</title>
-      <meta name="description" content="Куда Пицца - Лучшая пицца в мире" />
-      <link rel="icon" href="/favicon.png" />
-    </Head>
-
-    <Navbar />
-    <Header />
-
-    <Component {...pageProps} />
-    
-    <Footer />
-
-  </>
-);
-
-export const getServerSideProps = (ctx) => {
-  const cookies = Cookies.get(ctx);
-  if (cookies.token) {
-    Axios.defaults.headers.Authorization = `Bearer ${cookies.token}`;
+class MyApp extends App {
+  static async getServer({ Component, ctx }: AppContext) {
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    return { pageProps };
   }
-};
+  render() {
+    const { Component, pageProps } = this.props;
+    return <Component {...pageProps} />;
+  }
+// const App = ({ Component, pageProps }: AppProps) => (
+//   <>
+//     <Head>
+//       <title>Куда Пицца</title>
+//       <meta name="description" content="Куда Пицца - Лучшая пицца в мире" />
+//       <link rel="icon" href="/favicon.png" />
+//     </Head>
 
+//     <Navbar />
+//     <Header />
 
-export default App;
+//     <Component {...pageProps} />
+    
+//     <Footer />
+
+//   </>
+// );
+}
+
+export default wrapper.withRedux(MyApp);

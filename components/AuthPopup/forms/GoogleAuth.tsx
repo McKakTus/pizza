@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { MainContext, UserData } from '../../../pages';
+import Cookies from 'js-cookie';
 
 import styles from '../AuthPopup.module.scss';
 
@@ -21,7 +21,7 @@ export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenPhone }) => {
     };
 
     useEffect(() => {
-        window.addEventListener('message', ({ data }) => {
+        window.addEventListener('message', ({ data, origin }) => {
             const user: string = data;
             if (typeof user === 'string' && user.includes('googleId')) {
                 Cookies.remove('token');

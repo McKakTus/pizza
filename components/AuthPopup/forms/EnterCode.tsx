@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Axios } from '../../../core/axios';
 import { MainContext } from '../../../pages';
@@ -14,9 +14,9 @@ interface EnterCodeProps {
 export const EnterCode: React.FC<EnterCodeProps> = () => {
     const router = useRouter();
     const { userData } = React.useContext(MainContext);
-    const [codes, setCodes] = React.useState(['', '', '', '']);
+    const [codes, setCodes] = useState(['', '', '', '']);
     const nextDisabled = codes.some((v) => !v);
-    const [counter, setCounter] = React.useState(10);
+    const [counter, setCounter] = useState(10);
     const timerRef = useRef<any>();
 
     const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {

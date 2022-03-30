@@ -10,6 +10,7 @@
     "migrate": "npx sequelize-cli db:migrate"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/js-cookie": "^3.0.1",
@@ -25,6 +26,7 @@
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "next": "12.1.0",
+    "next-redux-wrapper": "^7.0.5",
     "node-sass": "^7.0.1",
     "nookies": "^2.5.2",
     "passport": "^0.5.2",
