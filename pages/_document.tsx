@@ -10,9 +10,6 @@ class AppDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* <title>Куда Пицца</title> */}
-          <meta name="description" content="Куда Пицца - Лучшая пицца в мире" />
-          <link rel="icon" href="/favicon.png" />
         </Head>
         <body>
           <Main />

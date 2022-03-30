@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import { AddressVerification } from "../components/AddressVerification";
 import { Banners } from "../components/Banners";
 import { Categories } from "../components/Categories";
@@ -57,7 +58,6 @@ export default function Home() {
   useEffect(() => {
     if (userData) {
       window.localStorage.setItem('userData', JSON.stringify(userData));
-      // window.localStorage.setItem('userData', userData ? JSON.stringify(userData) : '');
       Axios.defaults.headers.Authorization = 'Bearer ' + userData.token;
     }
   }, [userData]);
@@ -65,6 +65,11 @@ export default function Home() {
   return (
     <MainContext.Provider value={{ userData, setUserData, setFieldValue }}>      
       <MainLayout>
+        <Head>
+          <title>Куда Пицца</title>
+          <meta name="description" content="Куда Пицца - Лучшая пицца в мире" />
+          <link rel="icon" href="/favicon.png" />
+        </Head>
         <Categories />
         <Banners />
         <AddressVerification />
@@ -82,10 +87,10 @@ export default function Home() {
 //     if (user) {
 //       return {
 //         props: {},
-//         // redirect: {
-//         //   destination: '/',
-//         //   permanent: false,
-//         // },
+//         redirect: {
+//           destination: '/',
+//           permanent: false,
+//         },
 //       };
 //     }
 //   } catch (err) {}
