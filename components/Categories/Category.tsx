@@ -11,7 +11,7 @@ interface CategoryProps {
 export const Category: React.FC<CategoryProps> = ({ name, icon }) => {
     return (
         <li className={styles.item}>
-            <Link href="">
+            <Link href="/">
                 <a><img src={icon} alt={name} />{name}</a>
             </Link>
         </li>

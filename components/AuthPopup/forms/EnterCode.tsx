@@ -4,14 +4,9 @@ import { Axios } from '../../../core/axios';
 import { MainContext } from '../../../pages';
 
 import clsx from 'clsx';
-
 import styles from '../AuthPopup.module.scss';
 
-interface EnterCodeProps {
-    onOpenCode: () => void;
-}
-
-export const EnterCode: React.FC<EnterCodeProps> = () => {
+export const EnterCode: React.FC = () => {
     const router = useRouter();
     const { userData } = React.useContext(MainContext);
     const [codes, setCodes] = useState(['', '', '', '']);
@@ -29,10 +24,12 @@ export const EnterCode: React.FC<EnterCodeProps> = () => {
         });
         if (event.target.nextSibling) {
             (event.target.nextSibling as HTMLInputElement).focus();
+        } else {
+            onSubmit([...codes, value].join(''));
         }
     };
     
-    const onSubmit = async (code: any) => {
+    const onSubmit = async (code: string) => {
         try {
             await Axios.post(`/auth/sms/activate`, {
                 code,
@@ -62,7 +59,7 @@ export const EnterCode: React.FC<EnterCodeProps> = () => {
     return (
         <div className={styles.confirm}>
             <h2>Код из смс</h2>
-            <p>На номер +7 (926) 223-10-11</p>
+            <p>На номер +{userData.phone}</p>
             <div className={styles.formGroup}>
                 {codes.map((code, index) => (
                     <input
@@ -77,7 +74,7 @@ export const EnterCode: React.FC<EnterCodeProps> = () => {
                     />
                 ))}
             </div>
-            <button className={clsx(styles.btnConfirm, styles.btnSubmit)} disabled={nextDisabled} onSubmit={onSubmit} data-type="orange">Войти</button>
+            <button className={clsx(styles.btnConfirm, styles.btnSubmit)} disabled={nextDisabled} data-type="orange">Войти</button>
             {counter ? (
                 <p>Отправить код ещё раз через: <span>{counter} секунд</span></p>
             ) : (

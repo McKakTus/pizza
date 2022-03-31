@@ -43,6 +43,7 @@ class AuthController {
         });
       }
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         message: 'Ошибка при активации аккаунта',
       });
@@ -73,8 +74,8 @@ class AuthController {
   async sendSMS(req: express.Request, res: express.Response) {
     const phone = req.query.phone;
     const userId = req.user.id;
-    const smsCode = 1234;
-    // const smsCode = generateRandomCode();
+    // const smsCode = 1234;
+    const smsCode = generateRandomCode();
 
     if (!phone) {
       return res.status(400).json({

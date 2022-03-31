@@ -10,7 +10,7 @@ interface BannerProps {
 export const Banner: React.FC<BannerProps> = ({ image }) => {
     return (
         <li className={styles.item}>
-            <Link href="">
+            <Link href="/">
                 <a><img src={image} alt="" /></a>
             </Link>
         </li>

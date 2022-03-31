@@ -1,30 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NumberFormat from 'react-number-format';
 import { MainContext } from '../../../pages';
+import { AuthContext } from '..';
+
 import { Axios } from '../../../core/axios';
 
 import styles from '../AuthPopup.module.scss';
-
-interface EnterPhoneProps {
-  onOpenPhone: () => void;
-  onOpenCode: () => void;
-}
 
 type InputValueState = {
   formattedValue: string;
   value: string;
 };
 
-export const EnterPhone: React.FC<EnterPhoneProps> = ({ onOpenCode }) => {
+export const EnterPhone: React.FC = () => {
   const { setFieldValue } = React.useContext(MainContext);
-  const [values, setValues] = React.useState<InputValueState>({} as InputValueState);
+  const { onNextStep } = React.useContext(AuthContext)
+  const [values, setValues] = useState<InputValueState>({} as InputValueState);
   const nextDisabled = !values.formattedValue || values.formattedValue.includes('_');
 
   const onSubmit = async () => {
     try {
       await Axios.get(`/auth/sms?phone=${values.value}`);
       setFieldValue('phone', values.value);
-      onOpenCode();
+      onNextStep();
     } catch (error) {
       console.warn('Ошибка при отправке СМС', error);
     }

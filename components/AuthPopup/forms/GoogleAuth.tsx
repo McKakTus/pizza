@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
 import { MainContext, UserData } from '../../../pages';
+import { AuthContext } from '..';
 import Cookies from 'js-cookie';
 
 import styles from '../AuthPopup.module.scss';
 
-interface GoogleAuthProps {
-    onOpenGoogleAuth: () => void;
-    onOpenPhone: () => void;
-}
-
-export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenPhone }) => {
+export const GoogleAuth: React.FC = () => {
     const { setUserData } = React.useContext(MainContext);
+    const { onNextStep } = React.useContext(AuthContext)
 
     const onClickAuth = () => {
         window.open(
@@ -27,7 +24,7 @@ export const GoogleAuth: React.FC<GoogleAuthProps> = ({ onOpenPhone }) => {
                 Cookies.remove('token');
                 const json: UserData = JSON.parse(user);
                 setUserData(json);
-                onOpenPhone();
+                onNextStep();
                 Cookies.set('token', json.token);
             }
         });

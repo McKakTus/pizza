@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserData } from '../../redux/selectors';
+
+import { Link } from 'react-scroll';
+import { AuthPopup } from '../AuthPopup';
 
 import styles from './Navbar.module.scss';
-import { AuthPopup } from '../AuthPopup';
-import Link from 'next/link';
+import clsx from 'clsx';
 
 export const Navbar: React.FC = () => {
-    const [authVisible, setAuthVisible] = React.useState(false);
+    const userData = useSelector(selectUserData);
+    const [authVisible, setAuthVisible] = useState(false);
 
     const openAuthPopup = () => {
         setAuthVisible(true);
@@ -14,6 +19,12 @@ export const Navbar: React.FC = () => {
     const closeAuthPopup = () => {
         setAuthVisible(false);
     };
+
+    useEffect(() => {
+        if(authVisible && userData) {
+            setAuthVisible(false);
+        }
+    }, [authVisible, userData]);
     
     return (
         <nav className={styles.navbar}>
@@ -27,9 +38,9 @@ export const Navbar: React.FC = () => {
                                 <img src="icons/ic_arrow_bottom.svg" alt="" />
                             </button>
                         </li>
-                        <li className={styles.item}>
-                            <Link href="">
-                                <a className={styles.link}>Проверить адрес</a>
+                        <li className={clsx(styles.item, styles.link)}>
+                            <Link to="verification" spy={true} smooth={true} duration={500}>
+                                Проверить адрес
                             </Link>
                         </li>
                         <li className={styles.item}>Среднее время доставки*: <span>00:24:19</span></li>
@@ -37,10 +48,17 @@ export const Navbar: React.FC = () => {
                     <ul className={styles.items}>
                         <li className={styles.item}>Время работы: с 11:00 до 23:00</li>
                         <li className={styles.item}>
-                            <button className={styles.account} onClick={openAuthPopup}>
-                                <img src="icons/ic_account.svg" alt="" />
-                                <div className={styles.signin}>Войти в аккаунт</div>
-                            </button>
+                            {userData ? (
+                                <button className={styles.account}>
+                                    <img src="icons/ic_account.svg" alt="" />
+                                    <div className={styles.signin}>{userData?.name}</div>
+                                </button>
+                            ) : (
+                                <button className={styles.account} onClick={openAuthPopup}>
+                                    <img src="icons/ic_account.svg" alt="" />
+                                    <div className={styles.signin}>Войти в аккаунт</div>
+                                </button>
+                            )}
                         </li>
                     </ul>
                 </div>

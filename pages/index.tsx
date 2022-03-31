@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { NextPage } from "next";
 import Head from "next/head";
+
+import { MainLayout } from "../layouts/MainLayout";
+import { checkAuth } from "../utils/checkAuth";
+import { Axios } from '../core/axios';
+
 import { AddressVerification } from "../components/AddressVerification";
 import { Banners } from "../components/Banners";
 import { Categories } from "../components/Categories";
 import { Products } from "../components/Products";
-import { MainLayout } from "../layouts/MainLayout";
-import { checkAuth } from "../utils/checkAuth";
-import { Axios } from '../core/axios';
-import { wrapper } from "../redux/store";
 
 export type UserData = {
   id: number;
-  username: string;
+  name: string;
   phone: string;
   email: string;
-  password: string;
+  birthday: string;
   googleId: string;
   isActive: number;
   token?: string;
@@ -28,15 +30,7 @@ type MainContextProps = {
 
 export const MainContext = React.createContext<MainContextProps>({} as MainContextProps);
 
-// const getUserData = (): UserData | null => {
-//   try {
-//     return JSON.parse(window.localStorage.getItem('userData'));
-//   } catch (error) {
-//     return null;
-//   }
-// };
-
-export default function Home() {
+const Home: NextPage = () => {
   const [userData, setUserData] = useState<UserData>();
 
   const setFieldValue = (field: string, value: string) => {
@@ -46,15 +40,6 @@ export default function Home() {
     }));
   };
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const json = getUserData();
-  //     if (json) {
-  //       setUserData(json);
-  //     }
-  //   }
-  // }, []);
-  
   useEffect(() => {
     if (userData) {
       window.localStorage.setItem('userData', JSON.stringify(userData));
@@ -80,20 +65,22 @@ export default function Home() {
   );
 }
 
-// export const getServerSideProps = wrapper.getServerSideProps(async (ctx) => {
-//   try {
-//     const user = await checkAuth(ctx);
+export default Home;
 
-//     if (user) {
-//       return {
-//         props: {},
-//         redirect: {
-//           destination: '/',
-//           permanent: false,
-//         },
-//       };
-//     }
-//   } catch (err) {}
+export const getServerSideProps = async (ctx) => {
+  try {
+    const user = await checkAuth(ctx);
 
-//   return { props: {} };
-// });
+    if (user) {
+      return {
+        props: {},
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+  } catch (err) {}
+
+  return { props: {} };
+};

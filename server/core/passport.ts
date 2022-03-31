@@ -31,11 +31,11 @@ passport.use(
 
           const obj: Omit<UserData, 'id'> = {
             email: profile.email,
-            password: '',
             googleId: profile.id,
             isActive: 0,
-            username: '',
+            name: profile.displayName,
             phone: '',
+            birthday: ''
           };
 
           const findUser = await User.findOne({

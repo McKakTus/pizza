@@ -63,7 +63,7 @@ export const Header: React.FC = () => {
                     </NextLink>
                     {showMenu &&
                         <ul className={styles.menu__items} ref={dropdownRef}>
-                            <li className={styles.menu__item}><NextLink href=""><a>Акции</a></NextLink></li>
+                            <li className={styles.menu__item}><NextLink href="/"><a>Акции</a></NextLink></li>
                             <li className={clsx(styles.menu__item, 'item')}><Link to="pizzas" spy={true} smooth={true} duration={500}>Пицца</Link></li>
                             <li className={clsx(styles.menu__item, 'item')}><Link to="sushi" spy={true} smooth={true} duration={500}>Суши</Link></li>
                             <li className={clsx(styles.menu__item, 'item')}><Link to="drinks" spy={true} smooth={true} duration={500}>Напитки</Link></li>

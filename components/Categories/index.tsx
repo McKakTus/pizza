@@ -53,7 +53,7 @@ export const Categories: React.FC<CategoriesProps> = () => {
             <div className="container">
                 <ul className={styles.items}>
                     <li className={styles.item}>
-                        <NextLink href="">
+                        <NextLink href="/">
                             <a><img src="/img/categories/ic_actions.svg" alt="" />Акции</a>
                         </NextLink>
                     </li>
