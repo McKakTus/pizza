@@ -70,9 +70,6 @@ export const AuthPopup: React.FC<Auth> = ({ onClose, visible }) => {
                 <div className={styles.content}>
                     <button onClick={onClose} className={styles.close}><img src="/icons/ic_close.svg" alt="" /></button>
                     <Step />
-                    {/* {formType === 'main' && <GoogleAuth onOpenGoogleAuth={() => setFormType('gmail')} onOpenPhone={() => setFormType('phone')} />}
-                    {formType === 'phone' && <EnterPhone onOpenPhone={() => setFormType('phone')} onOpenCode={() => setFormType('code')} />}
-                    {formType === 'code' && <EnterCode onOpenCode={() => setFormType('code')} />} */}
                 </div>
             </div>
         </AuthContext.Provider>
