@@ -7,3 +7,5 @@ npm run dev
 npm run server
 
 install & settings docker + dbeaver
+
+sudo docker start pizza

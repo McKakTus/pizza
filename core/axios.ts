@@ -8,6 +8,6 @@ const Axios = axios.create({
     headers: {
         Authorization: 'Bearer ' + cookies?.token,
     },
-})
+});
 
 export { Axios };

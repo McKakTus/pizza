@@ -15,10 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
-const isLoggedIn = (req, res, next) => {
-  req.user ? next() : res.sendStatus(401);
-}
-
 app.get('/user/:id', passport.authenticate('jwt', { session: false }), AuthController.getUserInfo);
 app.get('/auth/me', passport.authenticate('jwt', { session: false }, AuthController.getMe));
 app.get('/auth/sms', passport.authenticate('jwt', { session: false }), AuthController.sendSMS);
@@ -35,11 +31,6 @@ app.get(
   passport.authenticate('google', { failureRedirect: '/login' }),
   AuthController.authCallback,
 );
-
-app.get('/logout', isLoggedIn, (req, res) => {
-  req.logout();
-  res.redirect('/');
-}); 
 
 app.listen(3001, () => {
   console.log('Server Runned');

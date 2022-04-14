@@ -31,10 +31,11 @@ export const EnterCode: React.FC = () => {
     
     const onSubmit = async (code: string) => {
         try {
-            await Axios.post(`/auth/sms/activate`, {
-                code,
-                user: userData,
-            });
+            // await Axios.post(`/auth/sms/activate`, {
+            //     code,
+            //     user: userData,
+            // });
+            await Axios.get(`/auth/sms/activate?code=${code}`);
             router.push('/');
         } catch (error) {
             alert('Ошибка при активации!');
