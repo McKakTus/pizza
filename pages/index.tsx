@@ -10,6 +10,7 @@ import { AddressVerification } from "../components/AddressVerification";
 import { Banners } from "../components/Banners";
 import { Categories } from "../components/Categories";
 import { Products } from "../components/Products";
+import { UserApi } from "../api/UserApi";
 
 export type UserData = {
   id: number;
@@ -66,6 +67,8 @@ const Home: NextPage = () => {
 }
 
 export const getServerSideProps = async (ctx) => {
+  console.log(ctx.req.headers.cookie);
+  // 2.18.22
   try {
     const user = await checkAuth(ctx);
 
@@ -73,13 +76,14 @@ export const getServerSideProps = async (ctx) => {
       return {
         props: {},
         redirect: {
-          destination: '/',
+          destination: '/profile/1',
           permanent: false,
         },
       };
     }
-  } catch (err) {}
-
+  } catch (err) {
+    console.log('Error!', err)
+  }
   return { props: {} };
 };
 

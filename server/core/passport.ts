@@ -1,5 +1,5 @@
 import passport from 'passport';
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
+import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import { User } from '../../models';
 import { UserData } from '../../pages';

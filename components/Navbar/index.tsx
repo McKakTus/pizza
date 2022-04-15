@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUserData } from '../../redux/selectors';
-
+import NextLink from 'next/link';
 import { Link } from 'react-scroll';
 import { AuthPopup } from '../AuthPopup';
 
@@ -24,6 +24,7 @@ export const Navbar: React.FC = () => {
         if(authVisible && userData) {
             setAuthVisible(false);
         }
+        console.log(userData);
     }, [authVisible, userData]);
     
     return (
@@ -49,10 +50,12 @@ export const Navbar: React.FC = () => {
                         <li className={styles.item}>Время работы: с 11:00 до 23:00</li>
                         <li className={styles.item}>
                             {userData ? (
-                                <button className={styles.account}>
-                                    <img src="icons/ic_account.svg" alt="" />
-                                    <div className={styles.signin}>{userData?.name}</div>
-                                </button>
+                                <NextLink href="/profile/1">
+                                    <a className={styles.account}>
+                                        <img src="icons/ic_account.svg" alt="" />
+                                        <div className={styles.signin}>{userData?.name}</div>
+                                    </a>
+                                </NextLink>
                             ) : (
                                 <button className={styles.account} onClick={openAuthPopup}>
                                     <img src="icons/ic_account.svg" alt="" />

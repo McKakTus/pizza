@@ -6,22 +6,22 @@ import { Profile } from '../../components/Profile';
 import { checkAuth } from '../../utils/checkAuth';
 
 interface ProfilePageProps {
-    profileData: UserData | null;
+  profileData: UserData | null;
 }
 
 const ProfilePage: NextPage<ProfilePageProps> = ({ profileData }) => {
-    return (
-        <>
-            <div className='container'>
-                <Profile 
-                    name={profileData.name} 
-                    email={profileData.email}
-                    birthday={profileData.birthday}
-                    phone={profileData.phone}
-                />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className='container'>
+        <Profile 
+          name={profileData.name} 
+          email={profileData.email}
+          birthday={profileData.birthday}
+          phone={profileData.phone}
+        />
+      </div>
+    </>
+  );
 };
 
 export default ProfilePage;

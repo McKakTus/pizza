@@ -20,7 +20,7 @@ app.get('/auth/me', passport.authenticate('jwt', { session: false }, AuthControl
 app.get('/auth/sms', passport.authenticate('jwt', { session: false }), AuthController.sendSMS);
 app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile']}));
 
-app.post(
+app.get(
   '/auth/sms/activate',
   passport.authenticate('jwt', { session: false }),
   AuthController.activate,
