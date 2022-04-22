@@ -4,10 +4,10 @@ import { parseCookies } from 'nookies';
 const cookies = parseCookies();
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:3001',
-    headers: {
-        Authorization: 'Bearer ' + cookies?.token,
-    },
+  baseURL: 'http://localhost:3001',
+  headers: {
+    Authorization: 'Bearer ' + cookies?.token,
+  },
 });
 
 export { Axios };

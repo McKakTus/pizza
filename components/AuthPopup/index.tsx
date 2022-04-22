@@ -4,8 +4,8 @@ import styles from './AuthPopup.module.scss';
 import { EnterPhone } from './forms/EnterPhone';
 import { EnterCode } from './forms/EnterCode';
 import { GoogleAuth } from './forms/GoogleAuth';
-import { MainContext, UserData } from '../../pages';
-import { Axios } from '../../core/axios';
+import { UserData } from '../../pages';
+import { setUserData } from '../../redux/slices/userSlice';
 
 const stepsAuth = {
     0: GoogleAuth,
@@ -46,7 +46,6 @@ const getFormStep = (): number => {
 };
 
 export const AuthPopup: React.FC<Auth> = ({ onClose, visible }) => {
-    const { setUserData } = React.useContext(MainContext);
     const [step, setStep] = useState<number>(0);
     const Step = stepsAuth[step];
 

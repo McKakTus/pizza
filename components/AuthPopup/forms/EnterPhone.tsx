@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import NumberFormat from 'react-number-format';
 import { MainContext } from '../../../pages';
 import { AuthContext } from '..';
-
 import { Axios } from '../../../core/axios';
 
 import styles from '../AuthPopup.module.scss';

@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { UserData } from '../pages';
+import { UserData } from '../../pages';
 
 export const UserApi = (instance: AxiosInstance) => {
   return {

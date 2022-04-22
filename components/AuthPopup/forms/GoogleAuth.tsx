@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { MainContext, UserData } from '../../../pages';
+import { UserData } from '../../../pages';
 import { AuthContext } from '..';
 import Cookies from 'js-cookie';
+import { setUserData } from '../../../redux/slices/userSlice';
 
 import styles from '../AuthPopup.module.scss';
 
 export const GoogleAuth: React.FC = () => {
-    const { setUserData } = React.useContext(MainContext);
     const { onNextStep } = React.useContext(AuthContext)
 
     const onClickAuth = () => {
@@ -18,7 +18,7 @@ export const GoogleAuth: React.FC = () => {
     };
 
     useEffect(() => {
-        window.addEventListener('message', ({ data, origin }) => {
+        window.addEventListener('message', ({ data }) => {
             const user: string = data;
             if (typeof user === 'string' && user.includes('googleId')) {
                 Cookies.remove('token');

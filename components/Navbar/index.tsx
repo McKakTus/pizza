@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../../redux/selectors';
+import { selectUserData } from '../../redux/slices/userSlice';
 import NextLink from 'next/link';
 import { Link } from 'react-scroll';
 import { AuthPopup } from '../AuthPopup';
@@ -24,7 +24,6 @@ export const Navbar: React.FC = () => {
         if(authVisible && userData) {
             setAuthVisible(false);
         }
-        console.log(userData);
     }, [authVisible, userData]);
     
     return (

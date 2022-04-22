@@ -1,12 +1,11 @@
 import { NextPage } from 'next';
 import React from 'react';
 import { UserData } from '..';
-import { Api } from '../../api';
+import { Api } from '../../utils/api';
 import { Profile } from '../../components/Profile';
-import { checkAuth } from '../../utils/checkAuth';
 
 interface ProfilePageProps {
-  profileData: UserData | null;
+  profileData?: UserData | null;
 }
 
 const ProfilePage: NextPage<ProfilePageProps> = ({ profileData }) => {
@@ -24,28 +23,26 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ profileData }) => {
   );
 };
 
-export default ProfilePage;
-
 export const getServerSideProps = async (ctx) => {
-    try {
-      const user = await checkAuth(ctx);
-  
-      const userId = ctx.query.id;
-      const profileData = await Api(ctx).getUserInfo(Number(userId));
-  
-      if (!user || !profileData) {
-        throw new Error();
-      }
-  
-      return {
-        props: {
-          profileData,
-        },
-      };
-    } catch (error) {
-      return {
-        props: {},
-        redirect: { permanent: false, destination: '/' },
-      };
+  try {
+    const userId = ctx.query.id;
+    const profileData = await Api(ctx).user.getUserInfo(Number(userId));
+
+    if (!profileData) {
+      throw new Error();
     }
+
+    return {
+      props: {
+        profileData,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+      redirect: { permanent: false, destination: '/' },
+    };
+  }
 };
+
+export default ProfilePage;
