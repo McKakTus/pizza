@@ -40,7 +40,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (userData) {
       window.localStorage.setItem('userData', JSON.stringify(userData));
-      Axios.defaults.headers.Authorization = 'Bearer ' + userData.token;
+      // Axios.defaults.headers.Authorization = 'Bearer ' + userData.token;
     }
   }, [userData]);
 
